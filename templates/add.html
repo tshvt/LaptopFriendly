@@ -1,0 +1,57 @@
+{% include "header.html" %}
+
+
+<section id="add" class="add">
+    <div class="container">
+
+        <div class="section-title">
+            <h3>Add <span>New Cafe</span></h3>
+            <p>If you've already found your favorite spot, and you want to share with others, you are welcome!</p>
+        </div>
+
+        <form method="post" action="{{ url_for('add_cafe') }}">
+
+            <div class="row">
+                {{ form.csrf_token }}
+
+                <div class="col-lg-6 mt-5 mt-lg-0">
+                    {{ form.name.label }}
+                    {{ form.name(class='form-control') }}
+
+                    {{ form.map_url.label }}
+                    {{ form.map_url(class='form-control') }}
+
+                    {{ form.location.label }}
+                    {{ form.location(class='form-control')}}
+
+                    {{ form.has_wifi.label }}
+                    {{ form.has_wifi(class='form-control') }}
+
+                    {{ form.has_sockets.label }}
+                    {{ form.has_sockets(class='form-control') }}
+                </div>
+
+
+                <div class="col-lg-6 mt-5 mt-lg-0">
+                    {{ form.img_url.label }}
+                    {{ form.img_url(class='form-control') }}
+
+                    {{ form.seats.label }}
+                    {{ form.seats(class='form-control')}}
+
+                    {{ form.coffee_price.label }}
+                    {{ form.coffee_price(class='form-control')}}
+
+
+                    {{ form.has_toilet.label }}
+                    {{ form.has_toilet(class='form-control')}}
+
+                    {{ form.submit(class="random-cafe-btn add-btn")}}
+                </div>
+            </div>
+        </form>
+    </div>
+
+</section>
+
+{% include "footer.html" %}

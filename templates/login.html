@@ -1,0 +1,35 @@
+{% include "header.html" %}
+
+
+<section id="add" class="add">
+    <div class="container">
+        <div class="section-title">
+            <h3>Log <span>In</span></h3>
+            <p>To add YOUR favorite cafe to the list.</p>
+            <p style="color:#e9607a;">{% with messages = get_flashed_messages() %}
+      {% if messages %}
+      {% for message in messages %}
+      {{ message }}
+      {% endfor %}
+      {% endif %}
+         {% endwith %} </p>
+        </div>
+        <form method="post" action="{{ url_for('login') }}">
+            <div class="row">
+                {{ form.csrf_token }}
+
+                <div class="col-lg-6 mt-5 mt-lg-0" style="margin-left: 230px;">
+                    {{ form.email.label }}
+                    {{ form.email(class='form-control') }}
+                    {{ form.password.label }}
+                    {{ form.password(class='form-control')}}
+                    {{ form.submit(class="random-cafe-btn add-btn")}}
+                </div>
+
+
+            </div>
+        </form>
+    </div>
+</section>
+
+{% include "footer.html" %}

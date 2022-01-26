@@ -1,0 +1,51 @@
+{% include "header.html" %}
+<!-- ======= Header ======= -->
+
+<main id="main">
+
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            {% if is_cafe %}
+            <div class="section-title">
+                <h3>Visit <span>Cafes</span> that we found!</h3>
+                <p>Here are the list of cafes that are the best to work from. Click on the image to see full details,
+                    including the number of seats, coffee prices and exact location.</p>
+                <h3>Don't feel like choosing today? Leave it to us!</h3>
+                <a class="random-cafe-btn" href="{{ url_for('random') }}">Random Cafe</a>
+            </div>
+
+            <div class="row portfolio-container">
+
+                {% for cafe in cafes %}
+
+                <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                    <img src="{{ cafe.img_url }}" class="img-fluid" alt="">
+                    <div class="portfolio-info">
+                        <h4>{{ cafe.name }}</h4>
+                        <p>{{ cafe.location }}</p>
+                        {% if current_user.id == 1 %}
+                        <a href="{{ url_for('delete_cafe', cafe_id=cafe.id) }}" class="details-link"
+                           title="Delete"><i class="bx bx-minus-circle"></i></a>
+                        {% endif %}
+                        <a href="{{ url_for('show_details', cafe_id=cafe.id) }}" class="preview-link" title="More Details"><i
+                                class="bx bx-link"></i></a>
+                    </div>
+                </div>
+
+                {% endfor %}
+                {% else %}
+                <div class="section-title">
+                    <h3><span>Oops!</span></h3>
+                    <p>Seems like there are no cafes yet.</p>
+                    <h3>Want to be the first to add a laptop friendly place to our list?</h3>
+                    <a class="random-cafe-btn" href="{{ url_for('add_cafe') }}">Add Cafe</a>
+                </div>
+
+            </div>
+            {% endif %}
+        </div>
+    </section><!-- End Portfolio Section -->
+
+</main><!-- End #main -->
+{% include "footer.html" %}
